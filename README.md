@@ -4,7 +4,7 @@ A sophisticated web application that leverages artificial intelligence to genera
 
 ## Technical Overview
 
-**AI Art Generator** is an enterprise-grade web application built with a Node.js backend and vanilla JavaScript frontend. The application integrates with AI image generation APIs to create unique mandala patterns, showcasing proficiency in API consumption, asynchronous programming, and modern web architecture.
+**AI Art Generator** is an enterprise-grade web application built with Node.js backend and vanilla JavaScript frontend. The application integrates with AI image generation APIs to create unique mandala patterns, showcasing proficiency in API consumption, asynchronous programming, and modern web architecture.
 
 ### Key Features
 
