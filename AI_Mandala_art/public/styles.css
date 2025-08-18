@@ -1,0 +1,80 @@
+/* General Styling */
+body {
+  background-color: black; /* Pure black background */
+  background-image: url('background1.jpg'); /* Add background image */
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll; /* Ensure scrolling is always enabled */
+}
+
+.container {
+  max-width: 600px; /* Limit container width */
+  background-color: #333; /* Dark grey container */
+  border: 1px solid #444; /* Subtle border for clarity */
+  border-radius: 15px;
+  padding: 20px;
+}
+
+h1.text-light-green {
+  color: #90ee90; /* Light green for the main heading */
+  font-size: 2.2rem;
+  text-transform: uppercase;
+}
+
+h2.text-lighter-green {
+  color: #98fb98; /* Lighter green for sub-heading */
+  font-size: 1.4rem;
+}
+
+p.text-light {
+  color: #ddd; /* Subtle grey text for descriptions */
+}
+
+input.form-control {
+  background-color: #f0f0f0; /* Light grey */
+  color: black; /* Black text */
+  border: 1px solid #555; /* Subtle border */
+  border-radius: 5px;
+}
+
+.btn-light-green {
+  background-color: #90ee90; /* Light green button */
+  color: black;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-light-green:hover {
+  background-color: #76c776; /* Slightly darker green */
+  transform: scale(1.05);
+}
+
+#result-container {
+  display: block; /* Result container remains visible */
+  margin-top: 20px;
+}
+
+#resultImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+#analysis {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #ddd; /* Subtle grey for analysis text */
+}
+
+#loadingText {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #90ee90; /* Matches the button color */
+}
