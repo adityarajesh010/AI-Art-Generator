@@ -154,5 +154,5 @@ vercel --prod
 
 **Production Ready**: This application demonstrates enterprise-level development practices, security consciousness, and scalable architecture suitable for commercial deployment.
 
-<!-- Commit for activity: Minor formatting update -->
-<!-- Commit for activity: Added note about project scalability and future-proofing. -->
+<!-- Note: Future versions may include support for WebSocket-based real-time image generation. -->
+<!-- Technical Note: Future releases may leverage GPU acceleration via WebGL for faster client-side image rendering and processing. -->
