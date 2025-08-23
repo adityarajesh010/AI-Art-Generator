@@ -117,6 +117,19 @@ function shortenDescription(text) {
   return text.split("\n").slice(0, 3).join(" ");
 }
 
+// Utility: Generate a random mandala prompt
+app.get("/random-prompt", (req, res) => {
+  const prompts = [
+    "Celestial sun and moon mandala",
+    "Geometric flower of life pattern",
+    "Mystical animal spirit mandala",
+    "Sacred geometry with vibrant colors",
+    "Abstract fractal symmetry"
+  ];
+  const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+  res.json({ prompt: randomPrompt });
+});
+
 // Start the Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);

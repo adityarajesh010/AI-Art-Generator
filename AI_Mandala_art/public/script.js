@@ -57,3 +57,18 @@ document.getElementById("generateBtn").addEventListener("click", async function 
     loadingText.classList.add("d-none");
   }
 });
+
+// Add random prompt button functionality
+const randomBtn = document.getElementById("randomPromptBtn");
+if (randomBtn) {
+  randomBtn.addEventListener("click", async function () {
+    const promptInput = document.getElementById("prompt");
+    try {
+      const response = await fetch("http://localhost:3000/random-prompt");
+      const data = await response.json();
+      promptInput.value = data.prompt;
+    } catch (err) {
+      alert("Could not fetch random prompt.");
+    }
+  });
+}
