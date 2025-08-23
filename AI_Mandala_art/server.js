@@ -130,6 +130,11 @@ app.get("/random-prompt", (req, res) => {
   res.json({ prompt: randomPrompt });
 });
 
+// Utility: Health check endpoint for uptime monitoring
+app.get("/health", (req, res) => {
+  res.json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 // Start the Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
