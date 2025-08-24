@@ -141,6 +141,16 @@ app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
+// Utility: Return server environment info for diagnostics
+app.get("/env-info", (req, res) => {
+  res.json({
+    node_version: process.version,
+    platform: process.platform,
+    memory_usage: process.memoryUsage(),
+    uptime: process.uptime()
+  });
+});
+
 // Start the Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
