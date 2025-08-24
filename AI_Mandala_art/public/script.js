@@ -72,3 +72,68 @@ if (randomBtn) {
     }
   });
 }
+
+// Download Mandala Button
+const downloadBtn = document.getElementById("downloadBtn");
+if (downloadBtn && resultImg) {
+  downloadBtn.addEventListener("click", function () {
+    if (resultImg.src && !resultImg.classList.contains("d-none")) {
+      const link = document.createElement("a");
+      link.href = resultImg.src;
+      link.download = "mandala.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      alert("No mandala image to download!");
+    }
+  });
+}
+
+// Theme Switcher Button
+const themeBtn = document.getElementById("themeBtn");
+if (themeBtn) {
+  themeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("alt-theme");
+  });
+}
+
+// History Feature
+const historyBtn = document.getElementById("historyBtn");
+const historyKey = "mandalaHistory";
+if (historyBtn) {
+  historyBtn.addEventListener("click", function () {
+    const history = JSON.parse(localStorage.getItem(historyKey) || "[]");
+    if (history.length === 0) {
+      alert("No history found.");
+      return;
+    }
+    let html = '<h5>Mandala History</h5><ul>';
+    history.forEach((item, idx) => {
+      html += `<li><a href="#" onclick="document.getElementById('resultImage').src='${item}';document.getElementById('resultImage').classList.remove('d-none');return false;">Mandala #${idx+1}</a></li>`;
+    });
+    html += '</ul>';
+    const analysis = document.getElementById("analysis");
+    analysis.innerHTML = html;
+  });
+}
+
+// Save generated image to history
+function saveToHistory(imgSrc) {
+  const history = JSON.parse(localStorage.getItem(historyKey) || "[]");
+  history.push(imgSrc);
+  if (history.length > 10) history.shift(); // Keep last 10
+  localStorage.setItem(historyKey, JSON.stringify(history));
+}
+
+// Patch into existing image display logic
+const oldDisplay = resultImg && resultImg.classList ? resultImg.classList.remove : null;
+if (resultImg) {
+  const origSetSrc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src').set;
+  Object.defineProperty(resultImg, 'src', {
+    set: function(value) {
+      origSetSrc.call(this, value);
+      if (value.startsWith('data:image')) saveToHistory(value);
+    }
+  });
+}
