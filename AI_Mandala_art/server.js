@@ -169,6 +169,52 @@ app.get("/color-palette", (req, res) => {
   res.json({ palette });
 });
 
+// Utility: Return a motivational quote for creativity
+app.get("/motivation", (req, res) => {
+  const quotes = [
+    "Creativity takes courage. – Henri Matisse",
+    "Art enables us to find ourselves and lose ourselves at the same time. – Thomas Merton",
+    "Every artist was first an amateur. – Ralph Waldo Emerson",
+    "You can’t use up creativity. The more you use, the more you have. – Maya Angelou",
+    "The world always seems brighter when you’ve just made something that wasn’t there before. – Neil Gaiman"
+  ];
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+  res.json({ quote });
+});
+
+// Feature: Save generated images to disk for gallery/history
+app.post("/save-image", (req, res) => {
+  try {
+    const { imageBase64 } = req.body;
+    if (!imageBase64) return res.status(400).json({ error: "No image data provided" });
+    const buffer = Buffer.from(imageBase64, 'base64');
+    const filename = `mandala_${Date.now()}.png`;
+    const filePath = path.join(__dirname, "public", filename);
+    fs.writeFileSync(filePath, buffer);
+    res.json({ message: "Image saved", url: `/` + filename });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to save image" });
+  }
+});
+
+// Feature: List all saved mandala images for gallery view
+app.get("/gallery", (req, res) => {
+  const publicDir = path.join(__dirname, "public");
+  const files = fs.readdirSync(publicDir)
+    .filter(f => f.startsWith("mandala_") && f.endsWith(".png"));
+  res.json({ images: files.map(f => "/" + f) });
+});
+
+// Feature: Delete a saved mandala image from gallery
+app.delete("/delete-image", (req, res) => {
+  const { filename } = req.body;
+  if (!filename) return res.status(400).json({ error: "No filename provided" });
+  const filePath = path.join(__dirname, "public", filename);
+  if (!fs.existsSync(filePath)) return res.status(404).json({ error: "File not found" });
+  fs.unlinkSync(filePath);
+  res.json({ message: "Image deleted" });
+});
+
 // Start the Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
