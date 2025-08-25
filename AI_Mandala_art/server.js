@@ -156,6 +156,19 @@ app.get("/server-time", (req, res) => {
   res.json({ server_time: new Date().toISOString() });
 });
 
+// Utility: Return a random color palette for mandala inspiration
+app.get("/color-palette", (req, res) => {
+  const palettes = [
+    ["#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9", "#92A8D1"],
+    ["#034F84", "#F7786B", "#DEEAEE", "#B1CBBB", "#C94C4C"],
+    ["#50394C", "#618685", "#36486B", "#F5F5DC", "#FF7B25"],
+    ["#D6CADD", "#C1502E", "#EFC050", "#5B5EA6", "#9B2335"],
+    ["#55B4B0", "#E15D44", "#7FCDCD", "#BC243C", "#C3447A"]
+  ];
+  const palette = palettes[Math.floor(Math.random() * palettes.length)];
+  res.json({ palette });
+});
+
 // Start the Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
