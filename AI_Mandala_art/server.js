@@ -151,6 +151,11 @@ app.get("/env-info", (req, res) => {
   });
 });
 
+// Utility: Return current server time
+app.get("/server-time", (req, res) => {
+  res.json({ server_time: new Date().toISOString() });
+});
+
 // Start the Server
 app.listen(PORT, () => {
   console.log(`✅ Server running at http://localhost:${PORT}`);
